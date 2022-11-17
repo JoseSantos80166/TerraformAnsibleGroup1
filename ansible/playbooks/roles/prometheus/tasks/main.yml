@@ -29,6 +29,10 @@
       path: /etc/prometheus/prometheus.yml
       owner: prometheus
       group: prometheus
+  - name: alert config file
+    copy:
+      src: ~/infrastructure/git_updated/TerraformAnsibleGroup1/ansible/playbooks/roles/prometheus/files/alert.rules.yml
+      dest: /etc/prometheus/alert.rules.yml
   - name: Start prometheus
     systemd:
       state: started
