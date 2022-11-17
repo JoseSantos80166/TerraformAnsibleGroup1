@@ -20,6 +20,24 @@
     apt:  
       pkg:
         -  prometheus
+  - name: Copy file
+    copy:
+      src: ~/infrastructure/git_updated/TerraformAnsibleGroup1/ansible/playbooks/roles/prometheus/files/prometheus.yml
+      dest: /etc/prometheus/prometheus.yml
+  - name: Change file permission
+    file:
+      path: /etc/prometheus/prometheus.yml
+      owner: prometheus
+      group: prometheus
+  - name: Copy file
+    copy:
+      src: ~/infrastructure/git_updated/TerraformAnsibleGroup1/ansible/playbooks/roles/prometheus/files/prometheus.service
+      dest: /etc/systemd/system/prometheus.service
+  - name: Change file permission
+    file:
+      path: /etc/systemd/system/prometheus.service
+      owner: prometheus
+      group: prometheus
   - name: Start prometheus
     systemd:
       state: started

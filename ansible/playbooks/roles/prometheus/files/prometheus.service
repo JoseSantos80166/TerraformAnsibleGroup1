@@ -7,7 +7,7 @@ After=network-online.target
 User=prometheus
 Group=prometheus
 Type=simple
-ExecStart=/usr/local/bin/prometheus \
+ExecStart=/etc/systemd/system/prometheus.service \
     --config.file /etc/prometheus/prometheus.yml \
     --storage.tsdb.path /var/lib/prometheus/ \
     --web.console.templates=/etc/prometheus/consoles \
@@ -15,13 +15,3 @@ ExecStart=/usr/local/bin/prometheus \
 
 [Install]
 WantedBy=multi-user.target
-roles/prometheus/files/prometheus.yml
-
-global:
-  scrape_interval: 15s
-
-scrape_configs:
-  - job_name: 'prometheus'
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['localhost:9090']
