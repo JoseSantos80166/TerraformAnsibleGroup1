@@ -4,6 +4,8 @@
     - { role: install_packages, become: true }
     - { role: deploy_nginx, become: true }
     - { role: download_site }
+    - { role: ubuntu_update, become: true }
+    - { role: nginx, become: true }
     - { role: prometheus, become: true }
     - { role: node_exporter, become: true }
     - { role: grafana, become: true }

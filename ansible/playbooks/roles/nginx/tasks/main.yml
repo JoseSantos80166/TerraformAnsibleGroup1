@@ -1,5 +1,5 @@
 ---
   - name: Download nginx
     apt:  
-    pkg:
-      -  nginx
+      pkg:
+        -  nginx
