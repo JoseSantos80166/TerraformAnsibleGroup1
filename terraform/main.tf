@@ -1,5 +1,6 @@
 # Random identifier to avoid collisions
 
+
 resource "random_string" "number" {
   length  = 4
   upper   = false
@@ -7,6 +8,7 @@ resource "random_string" "number" {
   numeric = true
   special = false
 }
+
 
 # Create virtual network
 resource "azurerm_virtual_network" "myterraformnetwork" {
@@ -104,7 +106,6 @@ resource "azurerm_storage_account" "mystorageaccount" {
   resource_group_name      = var.resource_group_name
   account_tier             = "Standard"
   account_replication_type = "LRS"
-  allow_blob_public_access = true
 }
 
 # Create virtual machine
@@ -140,9 +141,4 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   boot_diagnostics {
     storage_account_uri = azurerm_storage_account.mystorageaccount.primary_blob_endpoint
   }
-}
-resource "azurerm_storage_container" "tfstate" {
-  name                  = "tfstate"
-  storage_account_name  = azurerm_storage_account.mystorageaccount.name
-  container_access_type = "blob"
 }
